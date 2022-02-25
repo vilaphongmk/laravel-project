@@ -9,6 +9,7 @@ class AboutAdminController extends Controller
 {
     public function about()
     {
-        return view('user.about.about');
+        $fname = "Phong";
+        return view('user.about.about', compact('fname'));
     }
 }
