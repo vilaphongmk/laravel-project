@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class HomeAdminController extends Controller
 {
-    public function home()
+    public function Home()
     {
-        return view('user.home.home');
+        return view('admin.home.index');
     }
 }
