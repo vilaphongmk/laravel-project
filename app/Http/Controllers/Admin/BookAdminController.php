@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\book;
 
 class BookAdminController extends Controller
 {
@@ -30,5 +31,16 @@ class BookAdminController extends Controller
 
             ]
         );
+
+        try {
+            $book = new book();
+            $book->name = $request->name;
+            $book->lname = $request->Author;
+            $book->content = $request->content;
+            $book->save();
+            return redirect()->route('admin.about')->with('success', 'ບັນທຶກຂໍ້ມູນແລ້ວ');
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.about.form')->with('error', 'ຜີດພາດ');
+        }
     }
 }

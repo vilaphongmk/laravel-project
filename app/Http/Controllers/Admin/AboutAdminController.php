@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\book;
+use PhpParser\Node\Stmt\TryCatch;
 
 class AboutAdminController extends Controller
 {
     public function Index()
     {
-
-        return view('admin.about.index');
+        $data = book::all();
+        return view('admin.about.index', compact('data'));
     }
 
     public function Form()
@@ -35,5 +37,15 @@ class AboutAdminController extends Controller
 
             ]
         );
+        try {
+            $book = new book();
+            $book->name = $request->name;
+            $book->lname = $request->lname;
+            $book->content = $request->content;
+            $book->save();
+            return redirect()->route('admin.about')->with('success', 'ບັນທຶກຂໍ້ມູນແລ້ວ');
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.about.form')->with('error', 'ຜີດພາດ');
+        }
     }
 }
