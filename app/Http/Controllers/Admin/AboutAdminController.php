@@ -34,7 +34,6 @@ class AboutAdminController extends Controller
                 "lname.min" => "ນາມສະກຸນ ຕ້ອງຫຼາຍກວ່າ 4 ຕົວອັກສອນ",
                 "content.required" => "ກະລຸນາປ້ອ",
 
-
             ]
         );
         try {

@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container">
-    <h1>Hello Home Page</h1>
-    <a href="{{route('admin.about.form')}}">Add</a>
-    <a href="{{route('admin.about.book')}}">Add Book</a>
+    <h1 class="text-center">Hello Admin Home Page</h1>
+    <a href="{{route('admin.about.form')}}" class="btn btn-primary">Add</a>
+    <a href="{{route('admin.about.book')}}" class="btn btn-primary">Add Book</a>
 
     @if(Session::has('success'))
     <div class="alert alert-success text-center">
