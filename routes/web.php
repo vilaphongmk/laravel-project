@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BookAdminController;
 use App\Http\Controllers\Admin\AboutAdminController;
+use App\Http\Controllers\User\AboutUserController;
 
 
 Route::get('/', function () {
@@ -10,8 +11,9 @@ Route::get('/', function () {
 });
 
 // user routes
-route::get('/about', [AboutAdminController::class, 'Index'])->name('user.about');
-route::get('/about/form', [AboutAdminController::class, 'Form'])->name('admin.about.form');
-route::post('/about/store', [AboutAdminController::class, 'Store'])->name('admin.about.store');
-route::get('/about/book', [BookAdminController::class, 'Book'])->name('admin.about.book');
-route::post('/about/bookstore', [BookAdminController::class, 'BookStore'])->name('admin.about.bookstore');
+Route::get('/about', [AboutAdminController::class, 'Index'])->name('user.about');
+Route::get('/about/form', [AboutAdminController::class, 'Form'])->name('admin.about.form');
+Route::post('/about/store', [AboutAdminController::class, 'Store'])->name('admin.about.store');
+Route::get('/about/book', [BookAdminController::class, 'Book'])->name('admin.about.book');
+Route::post('/about/bookstore', [BookAdminController::class, 'BookStore'])->name('admin.about.bookstore');
+Route::get('/about/home', [AboutUserController::class, 'Home'])->name('user.home.index');

@@ -11,6 +11,7 @@ class AboutAdminController extends Controller
 {
     public function Index()
     {
+        // select data //
         $data = book::all();
         return view('admin.about.index', compact('data'));
     }
@@ -21,6 +22,7 @@ class AboutAdminController extends Controller
     }
     public function Store(request $request)
     {
+        // ກວດສອບຂໍ້ມູນ
         $request->validate(
             [
                 "name" => "required | max:10 ",
@@ -36,6 +38,7 @@ class AboutAdminController extends Controller
 
             ]
         );
+        // ປູ່ມກົດ
         try {
             $book = new book();
             $book->name = $request->name;

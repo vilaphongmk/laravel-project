@@ -12,4 +12,8 @@ class AboutUserController extends Controller
 
         return view('user.about.index');
     }
+    public function Home()
+    {
+        return view('user.home.index');
+    }
 }
