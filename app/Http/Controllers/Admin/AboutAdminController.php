@@ -50,4 +50,14 @@ class AboutAdminController extends Controller
             return redirect()->route('admin.about.form')->with('error', 'ຜີດພາດ');
         }
     }
+    public function Deletebook(request $request)
+    {
+        // dd($request->id);
+        $del = book::where('id', '=', $request->id)->delete();
+        if ($del) {
+            return back()->with("success", "ຂໍ້ມູນຖືກລົບແລ້ວ");
+        } else {
+            return back()->with('erro', 'ຜີດພາດລອງອີກຄັ້ງ');
+        }
+    }
 }
