@@ -31,7 +31,7 @@
                         <a class="nav-link active" aria-current="page" href="{{route('user.about')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('user.about')}}">About</a>
+                        <a class="nav-link" href="{{route('news')}}">Add News</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

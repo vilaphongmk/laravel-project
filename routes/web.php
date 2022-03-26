@@ -18,3 +18,7 @@ Route::get('/about/book', [BookAdminController::class, 'Book'])->name('admin.abo
 Route::post('/about/bookstore', [BookAdminController::class, 'BookStore'])->name('admin.about.bookstore');
 Route::get('/about/home', [AboutUserController::class, 'Home'])->name('user.home.index');
 Route::post('/about/remove', [AboutAdminController::class, 'Deletebook'])->name('admin.about.remove');
+
+//news
+Route::get('/addnews', [AboutAdminController::class, 'News'])->name('news');
+Route::post('/addnews', [AboutAdminController::class, 'Addnews'])->name('Addnews');
