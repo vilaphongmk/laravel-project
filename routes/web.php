@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BookAdminController;
 use App\Http\Controllers\Admin\AboutAdminController;
+use App\Http\Controllers\Member\MemberHomeController;
 use App\Http\Controllers\User\AboutUserController;
 
 
@@ -22,3 +23,10 @@ Route::post('/about/remove', [AboutAdminController::class, 'Deletebook'])->name(
 //news
 Route::get('/addnews', [AboutAdminController::class, 'News'])->name('news');
 Route::post('/addnews', [AboutAdminController::class, 'Addnews'])->name('Addnews');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// member
+Route::get('/member', [MemberHomeController::class, 'Member'])->name('member');
