@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+{{ Illuminate\Foundation\Application::VERSION }}
 <div class="container">
     <h1 class="text-center">Hello Admin index Page</h1>
     <a href="{{route('admin.about.form')}}" class="btn btn-primary">Add</a>

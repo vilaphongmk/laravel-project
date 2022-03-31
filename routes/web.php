@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\BookAdminController;
 use App\Http\Controllers\Admin\AboutAdminController;
 use App\Http\Controllers\Member\MemberHomeController;
 use App\Http\Controllers\User\AboutUserController;
+use App\Http\Controllers\Admin\HomeAdminController;
+
 
 
 Route::get('/', function () {
@@ -30,3 +32,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // member
 Route::get('/member', [MemberHomeController::class, 'Member'])->name('member');
+
+
+
+//admin 
+Route::get('/admin', [HomeAdminController::class, 'Index'])->name('admin.home');
