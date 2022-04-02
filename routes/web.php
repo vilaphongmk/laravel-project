@@ -6,7 +6,8 @@ use App\Http\Controllers\Admin\AboutAdminController;
 use App\Http\Controllers\Member\MemberHomeController;
 use App\Http\Controllers\User\AboutUserController;
 use App\Http\Controllers\Admin\HomeAdminController;
-
+use App\Http\Controllers\Admin\AdminRoleController;
+use GuzzleHttp\Middleware;
 
 
 Route::get('/', function () {
@@ -27,13 +28,20 @@ Route::get('/addnews', [AboutAdminController::class, 'News'])->name('news');
 Route::post('/addnews', [AboutAdminController::class, 'Addnews'])->name('Addnews');
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// member
-Route::get('/member', [MemberHomeController::class, 'Member'])->name('member');
 
 
 
-//admin 
-Route::get('/admin', [HomeAdminController::class, 'Index'])->name('admin.home');
+
+
+Route::group(['middleware' => ['auth']], function () {
+
+    //admin 
+    Route::get('/admin', [HomeAdminController::class, 'Index'])->name('admin.home')->middleware('isAdmin');
+    // member
+    Route::get('/member', [MemberHomeController::class, 'Member'])->name('member');
+    // role Admin
+    Route::get('/role', [AdminRoleController::class, 'Index'])->name('role');
+    Route::get('/admin/role/update/{slug}', [AdminRoleController::class, 'Update'])->name('role.update');
+});

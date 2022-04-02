@@ -7,12 +7,16 @@
             <div class="card">
                 <div class="card-header">{{ __('login') }}</div>
 
+                @if(Session::get('error'))
+                <div class="alert alert-warning text-center">{{Session::get('error')}}</div>
+                @endif
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('phone') }}</label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
                                 <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
