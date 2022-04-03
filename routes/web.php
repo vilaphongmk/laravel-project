@@ -43,5 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/member', [MemberHomeController::class, 'Member'])->name('member');
     // role Admin
     Route::get('/role', [AdminRoleController::class, 'Index'])->name('role');
-    Route::get('/admin/role/update/{slug}', [AdminRoleController::class, 'Update'])->name('role.update');
+    Route::get('/role/update/{slug}', [AdminRoleController::class, 'FormUpdate'])->name('role.update');
+    Route::post('admin/role/update', [AdminRoleController::class, 'Update'])->name('admin.role.update');
+    Route::post('admin/role/delete', [AdminRoleController::class, 'Delete'])->name('admin.delete.user');
 });

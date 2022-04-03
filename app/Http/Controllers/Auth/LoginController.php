@@ -55,10 +55,10 @@ class LoginController extends Controller
         );
 
         if (auth()->attempt(array('phone' => $request['phone'], 'password' => $request['password']))) {
-            if (auth()->user()->role == 'admin') {
-                return redirect()->route('admin.home');
+            if (auth()->user()->role == 'Admin') {
+                return redirect()->route('role');
             } else {
-                return redirect()->route('member.home');
+                return redirect()->route('member');
             }
         } else {
             return redirect()->route('login')->with('error', "ຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ");
