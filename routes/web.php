@@ -46,4 +46,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/role/update/{slug}', [AdminRoleController::class, 'FormUpdate'])->name('role.update');
     Route::post('admin/role/update', [AdminRoleController::class, 'Update'])->name('admin.role.update');
     Route::post('admin/role/delete', [AdminRoleController::class, 'Delete'])->name('admin.delete.user');
+    Route::post('/admin/delete/user', [AdminRoleController::class, 'DeleteAjax'])->name('admin.delete.user.ajax');
 });

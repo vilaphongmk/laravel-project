@@ -35,7 +35,7 @@
                         ລົບ
                     </button>
 
-                    <button type="button" class="btn btn-danger btn_sweet">sweet delete</button>
+                    <button type="button" class="btn btn-danger btn_sweet" data-id="{{$val->id}}" data-name="{{$val->name}}">sweet delete</button>
 
                 </td>
             </tr>
@@ -78,17 +78,16 @@
         //     $('#ShowName').val(name);
         //     $('#ShowId').val(id);
 
-
-
         // })
-
 
         $('.btn_sweet').click(function() {
 
-
+            let id = $(this).attr('data-id');
+            let name = $(this).attr('data-name');
+            // console.log(id, name);
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                text: "You won't be delete !",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -101,20 +100,34 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
-                    $.ajax
+                    $.ajax({
+                        url: "{{ route('admin.delete.user.ajax') }}",
+                        method: "post",
+                        data: {
+                            id: id
+                        },
+                        success: function(res) {
+
+                            let arr = res.trim().split('|')
+                            let status = arr[0];
+                            let text = arr[1];
+                            Notice(status, text);
+                            if (status === 'success') {
+                                location.reload()
+                            }
+                            // console.log(status);
+                        }
+                    });
                 }
             })
-        });
+        })
 
-        function Notice() {
+        function Notice(icon, text) {
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-
+                icon: icon,
+                title: text,
+                timer: 1500
             })
-
-
         }
 
 

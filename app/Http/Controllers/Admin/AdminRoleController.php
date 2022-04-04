@@ -29,7 +29,6 @@ class AdminRoleController extends Controller
                 'role' => 'required',
                 'status' => 'required',
                 'slug' => 'required',
-
             ],
             [
                 'name.required' => "ກະລຸນາປ້ອນຊື່",
@@ -58,6 +57,18 @@ class AdminRoleController extends Controller
             return back()->with('success', 'ຂໍ້ມູນຖືກລົບ ສຳເລັດແລ້ວ');
         } else {
             return back()->with('error', 'ລົບຂໍ້ມູນບໍ່ສຳເລັດ');
+        }
+    }
+    public function DeleteAjax(Request $request)
+    {
+        $id = $request->id;
+        if ($id) {
+            User::find($id)->delete();
+            $status = 'success|ຂໍ້ມູນຖືກລົບ ສຳເລັດແລ້ວ';
+            return response()->json($status);
+        } else {
+            $status = 'error|]ລົບຂໍ້ມູນ ບໍ່ສຳເລັດ';
+            return response()->json($status);
         }
     }
 }
