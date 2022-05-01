@@ -1,0 +1,56 @@
+1. require:  composer require laravel/ui
+2. php artisan ui bootstrap --auth
+    -- npm install  & npm run dev
+3. Make Middleware :  php artisan make:middleware isAdmin
+4. Edit middleware :
+        if (Auth()->user()->role == 'admin') {
+            return $next($request);
+        } else {
+            return redirect()->route('member.home');
+        }
+
+5. add middleware in Kernel.php
+        'isAdmin' => \App\Http\Middleware\isAdmin::class,
+
+6. design Database :
+        if u want to login by email, don't change
+
+7. Upload table to database & seeding:
+        php artisan migrate:refresh --seed
+
+8. Create function login on logincontroller
+  public function login(Request $request)
+    {
+        $this->validate($request, [
+            'phone' => 'required|max:10|min:10',
+            'password' => 'required',
+        ], [
+            'phone.required' => 'ກະລຸນາປ້ອນ ໝາຍເລກໂທລະສັບ',
+            'phone.max' => 'ໝາຍເລກໂທລະສັບບໍ່ຖືກ',
+            'phone.min' => 'ໝາຍເລກໂທລະສັບບໍ່ຖືກ',
+            'password.required' => 'ກະລຸນາປ້ອນລະຫັດຜ່ານ',
+        ]);
+
+        if (auth()->attempt(array('phone' => $request['phone'], 'password' => $request['password']))) {
+            if (auth()->user()->role == 'admin') {
+                return redirect()->route('admin');
+            } else {
+                return redirect()->route('member.home');
+            }
+        } else {
+            return redirect()->route('login')->with('error', "ຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ");
+        }
+    }
+    
+    
+    9. edit registercontroller 
+            if you login by phone change email to phone
+            
+    10. edit view  input type to type:number
+    
+    11. protect route 
+    
+        Route::group(['middleware' => ['auth']], function () {
+            Route::get('path', [controller, 'method'])->name('name-route')->middleware('isAdmin');
+        });
+    
